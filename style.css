@@ -1,0 +1,39 @@
+/* Reset básico para garantir que o layout comece igual em todos os navegadores */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f7f6;
+}
+
+/* Container para centralizar o conteúdo */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Exemplo de estilização para o cabeçalho */
+header {
+    background-color: #2e7d32; /* Verde Agrinho */
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+/* Layout responsivo para celulares */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 10px;
+    }
+    
+    header {
+        padding: 15px 0;
+    }
+}
