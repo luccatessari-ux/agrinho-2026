@@ -1,65 +1,70 @@
 /* =========================================================================
-   1. RESET E CONFIGURAÇÕES GERAIS
+   RESET GERAL DE ESTILOS
    ========================================================================= */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
 }
 
 body {
-    background-color: #f0f2f5;
-    color: #333;
+    background-color: #f4f6f9;
+    color: #333333;
     line-height: 1.6;
 }
 
 /* =========================================================================
-   2. CABEÇALHO E MENU NAVEGAÇÃO (INTERATIVO)
+   CABEÇALHO E MENU (PREPARADO PARA JAVASCRIPT)
    ========================================================================= */
 header {
     background-color: #1a237e;
     color: #ffffff;
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    padding: 1.2rem 2rem;
+    display: block; /* Base limpa sem flex global no body */
 }
 
-header h1 {
-    font-size: 1.5rem;
+.logo h1 {
+    font-size: 1.4rem;
+    display: inline-block;
 }
 
 #btn-menu {
+    float: right;
     background-color: #3f51b5;
-    color: white;
+    color: #ffffff;
     border: none;
-    padding: 0.6rem 1.2rem;
+    padding: 0.5rem 1rem;
     cursor: pointer;
     border-radius: 4px;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
+    font-size: 0.95rem;
+    transition: background 0.3s;
 }
 
 #btn-menu:hover {
     background-color: #283593;
 }
 
+/* Estado inicial do menu de navegação (escondido) */
 #menu-navegacao {
-    display: none; /* Escondido por padrão via JS */
+    display: none;
+    clear: both;
+    padding-top: 1rem;
 }
 
-/* Classe injetada pelo JavaScript para abrir o menu */
+/* Classe dinâmica adicionada via JavaScript (.classList.toggle('active')) */
 #menu-navegacao.active {
-    display: flex;
-    gap: 15px;
+    display: block;
+    text-align: center;
 }
 
 #menu-navegacao a {
-    color: white;
+    display: block;
+    color: #ffffff;
     text-decoration: none;
+    padding: 0.8rem 0;
     font-weight: 500;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     transition: color 0.2s;
 }
 
@@ -68,7 +73,7 @@ header h1 {
 }
 
 /* =========================================================================
-   3. ESTRUTURA PRINCIPAL E FORMULÁRIO
+   CONTEÚDO PRINCIPAL E FORMULÁRIO
    ========================================================================= */
 main {
     padding: 3rem 1rem;
@@ -76,17 +81,24 @@ main {
     margin: 0 auto;
 }
 
-main h2 {
-    margin-bottom: 1.5rem;
+.container-contacto h2 {
     color: #1a237e;
+    margin-bottom: 0.5rem;
     text-align: center;
+}
+
+.container-contacto p {
+    color: #666666;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: 0.95rem;
 }
 
 form {
     background: #ffffff;
     padding: 2.5rem;
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
 .campo {
@@ -97,38 +109,38 @@ form {
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 600;
-    color: #444;
+    color: #444444;
+    font-size: 0.9rem;
 }
 
 .campo input, 
 .campo textarea {
     width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #ccc;
+    padding: 0.8rem;
+    border: 1px solid #cccccc;
     border-radius: 4px;
     font-size: 1rem;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-/* Efeito de foco amigável nos inputs */
 .campo input:focus, 
 .campo textarea:focus {
     outline: none;
     border-color: #3f51b5;
-    box-shadow: 0 0 0 3px rgba(63, 81, 181, 0.2);
+    box-shadow: 0 0 0 3px rgba(63, 81, 181, 0.15);
 }
 
 button[type="submit"] {
     background-color: #2e7d32;
-    color: white;
+    color: #ffffff;
     border: none;
-    padding: 0.85rem;
+    padding: 0.9rem;
     font-size: 1rem;
     font-weight: bold;
     cursor: pointer;
     border-radius: 4px;
     width: 100%;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s;
 }
 
 button[type="submit"]:hover {
@@ -136,7 +148,7 @@ button[type="submit"]:hover {
 }
 
 /* =========================================================================
-   4. ANIMAÇÕES E FEEDBACKS (CONTROLADOS PELO JAVASCRIPT)
+   ESTADOS DE FEEDBACK (CONTROLADOS POR JAVASCRIPT)
    ========================================================================= */
 #caixa-feedback {
     margin-top: 1.5rem;
@@ -145,41 +157,67 @@ button[type="submit"]:hover {
     text-align: center;
     font-weight: 600;
     font-size: 0.95rem;
-    transition: all 0.3s ease;
 }
 
-/* Estado oculto */
+/* Oculto por padrão */
 .feedback-oculto {
     display: none;
-    opacity: 0;
 }
 
-/* Estado ativo (Sucesso) */
+/* Injetado pelo JS em caso de Sucesso */
 .feedback-ativo.tipo-sucesso {
     display: block;
     background-color: #e8f5e9;
     color: #2e7d32;
     border: 1px solid #c8e6c9;
-    animation: surgindo 0.4s ease forwards;
+    animation: deslizarParaBaixo 0.4s ease-out forwards;
 }
 
-/* Estado ativo (Erro) */
+/* Injetado pelo JS em caso de Erro */
 .feedback-ativo.tipo-erro {
     display: block;
     background-color: #ffebee;
     color: #c62828;
     border: 1px solid #ffcdd2;
-    animation: surgindo 0.4s ease forwards;
+    animation: deslizarParaBaixo 0.4s ease-out forwards;
 }
 
-/* Animação suave de surgimento para o feedback do formulário */
-@keyframes surgindo {
+/* Animação de transição suave */
+@keyframes deslizarParaBaixo {
     from {
         opacity: 0;
-        transform: translateY(-10px);
+        transform: translateY(-8px);
     }
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+/* =========================================================================
+   MEDIA QUERIES (ADAPTAÇÃO PARA ECRAÃS MAIORES)
+   ========================================================================= */
+@media (min-width: 768px) {
+    header {
+        display: table;
+        width: 100%;
+    }
+    .logo {
+        display: table-cell;
+        vertical-align: middle;
+    }
+    #btn-menu {
+        display: none; /* Esconde o botão hambúrguer em computadores */
+    }
+    #menu-navegacao {
+        display: table-cell !important;
+        text-align: right;
+        padding-top: 0;
+    }
+    #menu-navegacao a {
+        display: inline-block;
+        margin-left: 1.5rem;
+        padding: 0;
+        border-bottom: none;
     }
 }
