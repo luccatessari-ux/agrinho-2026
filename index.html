@@ -1,51 +1,39 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-PT">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minha Página Interativa</title>
-    <style>
-        /* Estilos básicos para o funcionamento da estrutura (CSS) */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
-        }
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        #btn-menu {
-            background: #5c6bc0;
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-        #menu-navegacao {
-            display: none; /* Escondido por padrão */
-        }
-        #menu-navegacao.active {
-            display: block; /* Exibido quando o JS adiciona a classe 'active' */
-        }
-        main {
-            padding: 2rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        form {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        .campo {
-            margin-bottom: 1rem;
-        }
-        .
+    <title>Página Dinâmica e Interativa</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <h1>WebInterface</h1>
+        </div>
+        
+        <button id="btn-menu" aria-label="Abrir menu">Menu ☰</button>
+        
+        <nav id="menu-navegacao">
+            <a href="#">Início</a>
+            <a href="#">Serviços</a>
+            <a href="#">Portefólio</a>
+            <a href="#">Contactos</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="container-contacto">
+            <h2>Enviar Mensagem</h2>
+            <p>Preencha os campos abaixo para testar a validação inteligente em JavaScript.</p>
+            
+            <form id="meu-formulario">
+                <div class="campo">
+                    <label for="campo-email">E-mail Corporativo</label>
+                    <input type="email" id="campo-email" placeholder="exemplo@dominio.pt">
+                </div>
+                
+                <div class="campo">
+                    <label for="campo-mensagem">A sua Mensagem</label>
+                    <textarea id="campo-mensagem" rows="5" placeholder="Escreva aqui
