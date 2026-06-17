@@ -1,56 +1,56 @@
-// Aguarda todo o HTML ser carregado antes de executar o script
-document.addEventListener("DOMContentLoaded", () => {
+/**
+ * Alterna dinamicamente entre as abas (tabs) dos pilares de sustentabilidade.
+ * @param {Event} evt - O evento de clique que disparou a função.
+ * @param {string} tabId - O ID do elemento de conteúdo que deve ser exibido.
+ */
+function openTab(evt, tabId) {
+    // 1. Esconde todos os conteúdos das abas
+    const tabcontent = document.getElementsByClassName("tab-content");
+    for (let i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].classList.remove("active");
+    }
     
-    // ==========================================================================
-    // 1. VALIDAÇÃO E EVENTO DO FORMULÁRIO DE NEWSLETTER
-    // ==========================================================================
-    const form = document.querySelector("form");
+    // 2. Remove a classe 'active' de todos os botões
+    const tablinks = document.getElementsByClassName("tab-btn");
+    for (let i = 0; i < tablinks.length; i++) {
+        tablinks[i].classList.remove("active");
+    }
     
-    if (form) {
-        form.addEventListener("submit", (event) => {
-            // Impede o envio padrão do formulário (recarregar a página)
-            event.preventDefault();
-            
-            const inputEmail = form.querySelector("input[type='email']");
-            const email = inputEmail.value.trim();
-            
-            if (email === "") {
-                alert("Por favor, preencha o campo de e-mail.");
-                return;
-            }
-            
-            // Simulação de sucesso
-            alert(`✉️ Sucesso! O e-mail "${email}" foi cadastrado para receber nossas novidades sustentáveis.`);
-            
-            // Limpa o campo após o envio
-            inputEmail.value = "";
-        });
+    // 3. Mostra a aba atual e adiciona a classe 'active' ao botão clicado
+    document.getElementById(tabId).classList.add("active");
+    evt.currentTarget.classList.add("active");
+}
+
+/**
+ * Executa o cálculo simulado do impacto ambiental com base na área e prática escolhida.
+ */
+function calcularImpacto() {
+    // Captura os valores digitados/selecionados pelo usuário
+    const hectaresInput = document.getElementById('tamanho').value;
+    const tecnologia = document.getElementById('tecnologia').value;
+    const resultadoDiv = document.getElementById('resultado');
+
+    // Converte o valor para número flutuante
+    const hectares = parseFloat(hectaresInput);
+
+    // Validação básica para garantir que o usuário digitou um número válido
+    if (!hectares || hectares <= 0) {
+        alert("Por favor, insira um número válido de hectares (maior que zero).");
+        return;
     }
 
-    // ==========================================================================
-    // 2. ANIMAÇÃO SUAVE AO ROLAR A PÁGINA (EFEITO NOS CARDS)
-    // ==========================================================================
-    const cards = document.querySelectorAll(".card");
-    
-    // Configura os cards para começarem invisíveis e levemente deslocados para baixo
-    cards.forEach(card => {
-        card.style.opacity = "0";
-        card.style.transform = "translateY(20px)";
-        card.style.transition = "opacity 0.6s ease-out, transform 0.6s ease-out";
-    });
+    let textoResultado = "";
 
-    // Função que checa se o elemento está visível na tela
-    const checarVisibilidade = () => {
-        const alturaDisparador = (window.innerHeight / 5) * 4; // Dispara quando o card está a 80% da tela
+    // Lógica do simulador baseado na opção escolhida
+    if (tecnologia === "agua") {
+        // Estimativa média: 15.000 litros de água economizados por hectare/ano
+        const aguaEconomizada = hectares * 15000; 
         
-        cards.forEach(card => {
-            const cardTopo = card.getBoundingClientRect().top;
-            
-            if (cardTopo < alturaDisparador) {
-                card.style.opacity = "1";
-                card.style.transform = "translateY(0)";
-            }
-        });
-    };
-
-    // Executa
+        textoResultado = `
+            <strong>Parabéns!</strong> Ao adotar a 
+            <span style="color: var(--secondary); font-weight: bold;">Irrigação Inteligente</span> 
+            em uma área de ${hectares} hectares, a estimativa é de economizar cerca de 
+            <strong>${aguaEconomizada.toLocaleString('pt-BR')} litros de água</strong> por ano. 
+            Além disso, você reduz drasticamente o consumo de energia elétrica das bombas de irrigação!
+        `;
+    } else if (te
