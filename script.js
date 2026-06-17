@@ -1,85 +1,56 @@
-// =========================================================================
-// 1. INICIALIZAÇÃO DO SISTEMA (Aguardando o DOM carregar completamente)
-// =========================================================================
+// Aguarda todo o HTML ser carregado antes de executar o script
 document.addEventListener("DOMContentLoaded", () => {
-    console.log("JavaScript ativado e pronto para dar vida à página! 🚀");
     
-    // Inicializar os seletores principais
-    inicializarMenu();
-    inicializarFormulario();
-});
-
-// =========================================================================
-// 2. INTERATIVIDADE: Menu Hamburguer / Elementos de Clique
-// =========================================================================
-function inicializarMenu() {
-    const botaoMenu = document.querySelector("#btn-menu");
-    const menuNav = document.querySelector("#menu-navegacao");
-
-    // Verifica se os elementos existem na página antes de aplicar o evento
-    if (botaoMenu && menuNav) {
-        botaoMenu.addEventListener("click", () => {
-            // Alterna a classe 'active' para abrir/fechar o menu via CSS
-            menuNav.classList.toggle("active");
+    // ==========================================================================
+    // 1. VALIDAÇÃO E EVENTO DO FORMULÁRIO DE NEWSLETTER
+    // ==========================================================================
+    const form = document.querySelector("form");
+    
+    if (form) {
+        form.addEventListener("submit", (event) => {
+            // Impede o envio padrão do formulário (recarregar a página)
+            event.preventDefault();
             
-            // Exemplo de feedback dinâmico no console
-            console.log("O estado do menu foi alterado!");
-        });
-    }
-}
-
-// =========================================================================
-// 3. VALIDAÇÃO: Formulários Inteligentes e Seguros
-// =========================================================================
-function inicializarFormulario() {
-    const formulario = document.querySelector("#meu-formulario");
-
-    if (formulario) {
-        formulario.addEventListener("submit", (evento) => {
-            // Impede o envio padrão e o recarregamento da página
-            evento.preventDefault(); 
-
-            // Captura dos campos
-            const campoEmail = document.querySelector("#campo-email");
-            const campoMensagem = document.querySelector("#campo-mensagem");
+            const inputEmail = form.querySelector("input[type='email']");
+            const email = inputEmail.value.trim();
             
-            // Regra de Validação Simples
-            if (campoEmail.value.trim() === "" || !campoEmail.value.includes("@")) {
-                exibirFeedback("Por favor, insira um e-mail válido.", "erro");
-                return; // Para a execução da função
-            }
-
-            if (campoMensagem.value.trim() === "") {
-                exibirFeedback("A mensagem não pode estar vazia.", "erro");
+            if (email === "") {
+                alert("Por favor, preencha o campo de e-mail.");
                 return;
             }
-
-            // Se tudo estiver correto
-            exibirFeedback("Formulário enviado com sucesso! 🎉", "sucesso");
-            formulario.reset(); // Limpa os campos
+            
+            // Simulação de sucesso
+            alert(`✉️ Sucesso! O e-mail "${email}" foi cadastrado para receber nossas novidades sustentáveis.`);
+            
+            // Limpa o campo após o envio
+            inputEmail.value = "";
         });
     }
-}
 
-// =========================================================================
-// 4. ANIMAÇÕES E FEEDBACKS VIVOS: Manipulação Dinâmica de Interface
-// =========================================================================
-function exibirFeedback(mensagem, tipo) {
-    const containerFeedback = document.querySelector("#caixa-feedback");
+    // ==========================================================================
+    // 2. ANIMAÇÃO SUAVE AO ROLAR A PÁGINA (EFEITO NOS CARDS)
+    // ==========================================================================
+    const cards = document.querySelectorAll(".card");
+    
+    // Configura os cards para começarem invisíveis e levemente deslocados para baixo
+    cards.forEach(card => {
+        card.style.opacity = "0";
+        card.style.transform = "translateY(20px)";
+        card.style.transition = "opacity 0.6s ease-out, transform 0.6s ease-out";
+    });
 
-    if (containerFeedback) {
-        // Altera o texto de forma inteligente
-        containerFeedback.textContent = mensagem;
+    // Função que checa se o elemento está visível na tela
+    const checarVisibilidade = () => {
+        const alturaDisparador = (window.innerHeight / 5) * 4; // Dispara quando o card está a 80% da tela
         
-        // Define a estilização baseada no tipo (sucesso ou erro)
-        containerFeedback.className = `feedback-ativo tipo-${tipo}`;
-        
-        // Pequena animação/efeito de sumir após 4 segundos (4000ms)
-        setTimeout(() => {
-            containerFeedback.className = "feedback-oculto";
-        }, 4000);
-    } else {
-        // Caso não tenha o elemento HTML, exibe um alerta padrão do navegador
-        alert(mensagem);
-    }
-}
+        cards.forEach(card => {
+            const cardTopo = card.getBoundingClientRect().top;
+            
+            if (cardTopo < alturaDisparador) {
+                card.style.opacity = "1";
+                card.style.transform = "translateY(0)";
+            }
+        });
+    };
+
+    // Executa
