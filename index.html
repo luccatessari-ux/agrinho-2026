@@ -1,39 +1,44 @@
 <!DOCTYPE html>
-<html lang="pt-PT">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Dinâmica e Interativa</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <title>AgroSustentável | O Futuro da Terra</title>
+    <style>
+        /* Reset de estilos básicos */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-    <header>
-        <div class="logo">
-            <h1>WebInterface</h1>
-        </div>
-        
-        <button id="btn-menu" aria-label="Abrir menu">Menu ☰</button>
-        
-        <nav id="menu-navegacao">
-            <a href="#">Início</a>
-            <a href="#">Serviços</a>
-            <a href="#">Portefólio</a>
-            <a href="#">Contactos</a>
-        </nav>
-    </header>
+        body {
+            background-color: #f4f9f4;
+            color: #333;
+            line-height: 1.6;
+        }
 
-    <main>
-        <section class="container-contacto">
-            <h2>Enviar Mensagem</h2>
-            <p>Preencha os campos abaixo para testar a validação inteligente em JavaScript.</p>
-            
-            <form id="meu-formulario">
-                <div class="campo">
-                    <label for="campo-email">E-mail Corporativo</label>
-                    <input type="email" id="campo-email" placeholder="exemplo@dominio.pt">
-                </div>
-                
-                <div class="campo">
-                    <label for="campo-mensagem">A sua Mensagem</label>
-                    <textarea id="campo-mensagem" rows="5" placeholder="Escreva aqui
+        /* Cabeçalho */
+        header {
+            background-color: #2c5e3b;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            font-style: italic;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Menu de Navegação */
+        nav {
+            background-color: #1
