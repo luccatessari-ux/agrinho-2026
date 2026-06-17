@@ -1,39 +1,185 @@
-/* Reset básico para garantir que o layout comece igual em todos os navegadores */
+/* =========================================================================
+   1. RESET E CONFIGURAÇÕES GERAIS
+   ========================================================================= */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
+    background-color: #f0f2f5;
     color: #333;
-    background-color: #f4f7f6;
+    line-height: 1.6;
 }
 
-/* Container para centralizar o conteúdo */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* Exemplo de estilização para o cabeçalho */
+/* =========================================================================
+   2. CABEÇALHO E MENU NAVEGAÇÃO (INTERATIVO)
+   ========================================================================= */
 header {
-    background-color: #2e7d32; /* Verde Agrinho */
+    background-color: #1a237e;
+    color: #ffffff;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+header h1 {
+    font-size: 1.5rem;
+}
+
+#btn-menu {
+    background-color: #3f51b5;
     color: white;
-    padding: 20px 0;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+#btn-menu:hover {
+    background-color: #283593;
+}
+
+#menu-navegacao {
+    display: none; /* Escondido por padrão via JS */
+}
+
+/* Classe injetada pelo JavaScript para abrir o menu */
+#menu-navegacao.active {
+    display: flex;
+    gap: 15px;
+}
+
+#menu-navegacao a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+#menu-navegacao a:hover {
+    color: #ffeb3b;
+}
+
+/* =========================================================================
+   3. ESTRUTURA PRINCIPAL E FORMULÁRIO
+   ========================================================================= */
+main {
+    padding: 3rem 1rem;
+    max-width: 550px;
+    margin: 0 auto;
+}
+
+main h2 {
+    margin-bottom: 1.5rem;
+    color: #1a237e;
     text-align: center;
 }
 
-/* Layout responsivo para celulares */
-@media (max-width: 768px) {
-    .container {
-        padding: 0 10px;
+form {
+    background: #ffffff;
+    padding: 2.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.campo {
+    margin-bottom: 1.5rem;
+}
+
+.campo label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #444;
+}
+
+.campo input, 
+.campo textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efeito de foco amigável nos inputs */
+.campo input:focus, 
+.campo textarea:focus {
+    outline: none;
+    border-color: #3f51b5;
+    box-shadow: 0 0 0 3px rgba(63, 81, 181, 0.2);
+}
+
+button[type="submit"] {
+    background-color: #2e7d32;
+    color: white;
+    border: none;
+    padding: 0.85rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #1b5e20;
+}
+
+/* =========================================================================
+   4. ANIMAÇÕES E FEEDBACKS (CONTROLADOS PELO JAVASCRIPT)
+   ========================================================================= */
+#caixa-feedback {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+/* Estado oculto */
+.feedback-oculto {
+    display: none;
+    opacity: 0;
+}
+
+/* Estado ativo (Sucesso) */
+.feedback-ativo.tipo-sucesso {
+    display: block;
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #c8e6c9;
+    animation: surgindo 0.4s ease forwards;
+}
+
+/* Estado ativo (Erro) */
+.feedback-ativo.tipo-erro {
+    display: block;
+    background-color: #ffebee;
+    color: #c62828;
+    border: 1px solid #ffcdd2;
+    animation: surgindo 0.4s ease forwards;
+}
+
+/* Animação suave de surgimento para o feedback do formulário */
+@keyframes surgindo {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
     }
-    
-    header {
-        padding: 15px 0;
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
