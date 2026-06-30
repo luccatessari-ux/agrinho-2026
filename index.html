@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgroSustentável | O Futuro da Terra</title>
+    <title>Agrosustentabilidade | Cultivando o Futuro</title>
     <style>
-        /* Configurações Gerais */
+        /* === ESTILOS GERAIS (CSS) === */
         :root {
-            --primary: #2c6e49;
-            --secondary: #4c956c;
-            --accent: #fefee3;
-            --dark: #1c3a27;
-            --light: #f4f9f4;
+            --primary-color: #2e7d32;
+            --primary-dark: #1b5e20;
+            --secondary-color: #81c784;
+            --accent-color: #f57c00;
+            --text-color: #333333;
+            --light-bg: #f4f7f4;
+            --white: #ffffff;
         }
 
         * {
@@ -22,139 +24,144 @@
         }
 
         body {
-            background-color: var(--light);
-            color: var(--dark);
+            color: var(--text-color);
+            background-color: var(--light-bg);
             line-height: 1.6;
         }
 
-        /* Cabeçalho e Menu */
+        /* Menu de Navegação */
         header {
-            background-color: var(--primary);
-            color: white;
-            padding: 1rem 2rem;
-            position: sticky;
+            background-color: var(--white);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
         }
 
-        header h1 {
+        .logo {
             font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
         }
 
-        nav a {
-            color: white;
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
             text-decoration: none;
-            margin-left: 1.5rem;
-            font-weight: 600;
+            color: var(--text-color);
+            font-weight: 500;
             transition: color 0.3s;
         }
 
-        nav a:hover {
-            color: var(--accent);
+        .nav-links a:hover {
+            color: var(--primary-color);
         }
 
-        /* Hero Section */
+        /* Seção Hero (Banner Principal) */
         .hero {
-            background: linear-gradient(rgba(44, 110, 73, 0.8), rgba(28, 58, 39, 0.9)), url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
-            color: white;
-            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://unsplash.com') no-repeat center center/cover;
+            height: 80vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
+            color: var(--white);
             padding: 0 1rem;
+            margin-top: 60px;
         }
 
-        .hero h2 {
-            font-size: 2.5rem;
+        .hero h1 {
+            font-size: 3rem;
             margin-bottom: 1rem;
         }
 
         .hero p {
             font-size: 1.2rem;
             max-width: 600px;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .btn {
-            background-color: var(--secondary);
-            color: white;
-            padding: 0.75rem 1.5rem;
+            background-color: var(--accent-color);
+            color: var(--white);
+            padding: 0.8rem 2rem;
             border: none;
             border-radius: 5px;
-            cursor: pointer;
             font-size: 1rem;
+            cursor: pointer;
             text-decoration: none;
             transition: background 0.3s;
         }
 
         .btn:hover {
-            background-color: var(--dark);
+            background-color: #e65100;
         }
 
-        /* Seção Interativa: Abas de Pilares */
+        /* Seções de Conteúdo */
         .container {
-            max-width: 1100px;
-            margin: 3rem auto;
-            padding: 0 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
         }
 
-        .tabs {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 2rem;
-            border-bottom: 2px solid #ddd;
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--primary-dark);
+            margin-bottom: 3rem;
         }
 
-        .tab-btn {
-            background: none;
-            border: none;
-            padding: 1rem 2rem;
-            font-size: 1.1rem;
-            cursor: pointer;
-            color: #666;
-            font-weight: bold;
-            transition: all 0.3s;
+        /* Cartões de Pilares */
+        .pilares-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
 
-        .tab-btn.active {
-            color: var(--primary);
-            border-bottom: 4px solid var(--primary);
-        }
-
-        .tab-content {
-            display: none;
-            background: white;
+        .pilar-card {
+            background-color: var(--white);
             padding: 2rem;
             border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-top: 5px solid var(--primary-color);
+            transition: transform 0.3s;
         }
 
-        .tab-content.active {
-            display: block;
+        .pilar-card:hover {
+            transform: translateY(-5px);
         }
 
-        /* Calculadora Interativa */
-        .calc-box {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            margin-top: 3rem;
-        }
-
-        .calc-box h3 {
+        .pilar-card h3 {
+            color: var(--primary-color);
             margin-bottom: 1rem;
-            color: var(--primary);
+        }
+
+        /* Seção da Calculadora Interativa */
+        .calculator-section {
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 3rem 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-align: center;
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin: 2rem 0;
         }
 
         .form-group label {
@@ -163,39 +170,146 @@
             font-weight: bold;
         }
 
-        .form-group select, .form-group input {
+        .form-group input {
+            padding: 0.8rem;
             width: 100%;
-            padding: 0.7rem;
-            border: 1px solid #ccc;
+            max-width: 300px;
+            border: 2px solid #ccc;
             border-radius: 5px;
             font-size: 1rem;
-        }
-
-        #resultado {
-            margin-top: 1.5rem;
-            padding: 1rem;
-            background-color: var(--accent);
-            border-left: 5px solid var(--secondary);
-            display: none;
-            border-radius: 0 5px 5px 0;
-        }
-
-        /* Rodapé */
-        footer {
-            background-color: var(--dark);
-            color: white;
             text-align: center;
-            padding: 2rem;
-            margin-top: 4rem;
+        }
+
+        .result-box {
+            display: none;
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background-color: #e8f5e9;
+            border-left: 5px solid var(--primary-color);
+            border-radius: 4px;
+            text-align: left;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .result-box p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Rodapé e Contato */
+        footer {
+            background-color: #1b3d20;
+            color: var(--white);
+            padding: 3rem 2rem 1rem 2rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 2rem;
+        }
+
+        .footer-form input, .footer-form textarea {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 0.8rem;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+        }
+
+        /* Responsividade Básica */
+        @media (max-width: 768px) {
+            .navbar { flex-direction: column; gap: 1rem; }
+            .nav-links { gap: 1rem; }
+            .hero h1 { font-size: 2rem; }
+            .footer-content { flex-direction: column; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Menu de Navegação -->
     <header>
-        <h1>🌱 AgroSustentável</h1>
-        <nav>
-            <a href="#pilares">Pilares</a>
-            <a href="#calculadora">Simulador</a>
+        <nav class="navbar">
+            <div class="logo">🌱 AgroSustentável</div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#pilares">Pilares</a></li>
+                <li><a href="#calculadora">Calculadora</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
         </nav>
-    </
+    </header>
+
+    <!-- Banner Principal -->
+    <section id="inicio" class="hero">
+        <h1>O Futuro da Agricultura é Sustentável</h1>
+        <p>Descubra como práticas ecológicas na tecnologia rural podem preservar o solo, economizar água e garantir alimentos saudáveis para as próximas gerações.</p>
+        <a href="#calculadora" class="btn">Calcular Impacto</a>
+    </section>
+
+    <!-- Seção de Pilares -->
+    <section id="pilares" class="container">
+        <h2 class="section-title">Pilares do Agronegócio Verde</h2>
+        <div class="pilares-grid">
+            <div class="pilar-card">
+                <h3>Conservação do Solo</h3>
+                <p>Uso de plantio direto, rotação de culturas e adubação orgânica para evitar a erosão e manter a terra rica em nutrientes naturalmente.</p>
+            </div>
+            <div class="pilar-card">
+                <h3>Gestão da Água</h3>
+                <p>Sistemas modernos de irrigação por gotejamento e captação de água da chuva que evitam o desperdício dos recursos hídricos.</p>
+            </div>
+            <div class="pilar-card">
+                <h3>Energias Renováveis</h3>
+                <p>Implementação de painéis solares e biomassa nas fazendas para reduzir drasticamente as emissões de gases poluentes.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Interativa (Calculadora) -->
+    <section id="calculadora" class="container">
+        <div class="calculator-section">
+            <h2 class="section-title" style="margin-bottom: 1rem;">Calculadora de Impacto Ecológico</h2>
+            <p>Simule a conversão da sua propriedade rural para técnicas sustentáveis.</p>
+            
+            <div class="form-group">
+                <label for="hectares">Tamanho da propriedade (em Hectares):</label>
+                <input type="number" id="hectares" placeholder="Ex: 50" min="1">
+            </div>
+            <button class="btn" onclick="calcularImpacto()">Calcular Economia</button>
+
+            <!-- Caixa de Resultados (Invisível até o clique) -->
+            <div id="resultado" class="result-box">
+                <h4>🎉 Estimativa de Impacto Anual:</h4>
+                <br>
+                <p>💧 <strong>Água economizada:</strong> <span id="res-agua">0</span> litros.</p>
+                <p>📉 <strong>Redução de CO₂:</strong> <span id="res-co2">0</span> kg de carbono.</p>
+                <p>🐛 <strong>Preservação de solo:</strong> Solo mais rico e livre de químicos agressivos.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé e Contato -->
+    <footer id="contato">
+        <div class="footer-content">
+            <div style="flex: 1; min-width: 250px;">
+                <h3>Sobre o Projeto Agrinho</h3>
+                <p style="margin-top: 1rem; color: #b3cbb5;">Trabalho escolar focado na conscientização sobre o uso de tecnologias sustentáveis no meio rural.</p>
+            </div>
+            <div class="footer-form" style="flex: 1; min-width: 250px;">
+                <h3>Mande sua Dúvida</h3>
+                <form onsubmit="enviarFormulario(event)" style="margin-top: 1rem;">
+                    <input type="text" placeholder="Seu Nome" required>
