@@ -1,14 +1,20 @@
-/* Configurações Gerais e Variáveis */
+/**
+ * ARQUIVO DE ESTILIZAÇÃO (CSS) - PROJETO AGRINHO
+ * Tema: Agrosustentabilidade
+ */
+
+/* === VARIÁVEIS DE CORES E PALETA DA NATUREZA === */
 :root {
-    --primary: #2c6e49;
-    --secondary: #4c956c;
-    --accent: #fefee3;
-    --dark: #1c3a27;
-    --light: #f4f9f4;
-    --text-muted: #666;
-    --white: #ffffff;
+    --primary-color: #2e7d32;      /* Verde folha médio */
+    --primary-dark: #1b5e20;       /* Verde floresta escuro */
+    --secondary-color: #81c784;    /* Verde claro broto */
+    --accent-color: #f57c00;       /* Laranja terra/sol */
+    --text-color: #333333;         /* Cinza escuro para leitura */
+    --light-bg: #f4f7f4;           /* Fundo verde-areia bem claro */
+    --white: #ffffff;              /* Branco puro */
 }
 
+/* === CONFIGURAÇÕES GERAIS E RESET === */
 * {
     margin: 0;
     padding: 0;
@@ -16,241 +22,301 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Rolagem suave quando clica nos links do menu */
 html {
     scroll-behavior: smooth;
 }
 
 body {
-    background-color: var(--light);
-    color: var(--dark);
+    color: var(--text-color);
+    background-color: var(--light-bg);
     line-height: 1.6;
 }
 
-/* Cabeçalho e Menu de Navegação */
+/* === CABEÇALHO E MENU DE NAVEGAÇÃO === */
 header {
-    background-color: var(--primary);
-    color: var(--white);
-    padding: 1rem 2rem;
-    position: sticky;
+    background-color: var(--white);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: fixed;
+    width: 100%;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
 }
 
-header h1 {
+.logo {
     font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
 }
 
-nav a {
-    color: var(--white);
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
     text-decoration: none;
-    margin-left: 1.5rem;
-    font-weight: 600;
+    color: var(--text-color);
+    font-weight: 500;
     transition: color 0.3s ease;
 }
 
-nav a:hover {
-    color: var(--accent);
+.nav-links a:hover {
+    color: var(--primary-color);
 }
 
-/* Seção Hero (Banner Principal) */
+/* === SEÇÃO HERO (BANNER PRINCIPAL) === */
 .hero {
-    background: linear-gradient(rgba(44, 110, 73, 0.8), rgba(28, 58, 39, 0.9)), 
-                url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
-    color: var(--white);
-    height: 60vh;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://unsplash.com') no-repeat center center/cover;
+    height: 80vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
+    color: var(--white);
     padding: 0 1rem;
+    margin-top: 60px; /* Evita que o menu fixo cubra o topo */
 }
 
-.hero h2 {
-    font-size: 2.5rem;
+.hero h1 {
+    font-size: 3rem;
     margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .hero p {
     font-size: 1.2rem;
     max-width: 600px;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 
 /* Botões Customizados */
 .btn {
-    background-color: var(--secondary);
+    background-color: var(--accent-color);
     color: var(--white);
-    padding: 0.75rem 1.5rem;
+    padding: 0.8rem 2rem;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
     font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
     text-decoration: none;
     display: inline-block;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .btn:hover {
-    background-color: var(--dark);
-    transform: translateY(-2px);
+    background-color: #e65100;
+    transform: scale(1.03);
 }
 
-.btn:active {
-    transform: translateY(0);
-}
-
-/* Container Principal */
+/* === ESTRUTURA DOS CONTAINERS DE CONTEÚDO === */
 .container {
-    max-width: 1100px;
-    margin: 3rem auto;
-    padding: 0 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
 }
 
-/* Sistema Interativo de Abas (Tabs) */
-.tabs {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 2rem;
-    border-bottom: 2px solid #ddd;
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--primary-dark);
+    margin-bottom: 3rem;
+    position: relative;
 }
 
-.tab-btn {
-    background: none;
-    border: none;
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
-    cursor: pointer;
-    color: var(--text-muted);
-    font-weight: bold;
-    transition: all 0.3s ease;
-}
-
-.tab-btn:hover {
-    color: var(--primary);
-}
-
-.tab-btn.active {
-    color: var(--primary);
-    border-bottom: 4px solid var(--primary);
-}
-
-.tab-content {
-    display: none;
-    background: var(--white);
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    animation: fadeIn 0.5s ease;
-}
-
-.tab-content.active {
+/* Detalhe visual embaixo do título */
+.section-title::after {
+    content: '';
     display: block;
+    width: 60px;
+    height: 4px;
+    background-color: var(--accent-color);
+    margin: 0.5rem auto 0 auto;
+    border-radius: 2px;
 }
 
-/* Caixa do Simulador / Calculadora */
-.calc-box {
-    background: var(--white);
-    padding: 2.5rem;
+/* === GRADE DOS CARTÕES (PILARES) === */
+.pilares-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.pilar-card {
+    background-color: var(--white);
+    padding: 2.5rem 2rem;
     border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    margin-top: 3rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    border-top: 5px solid var(--primary-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.calc-box h3 {
+.pilar-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+.pilar-card h3 {
+    color: var(--primary-color);
     margin-bottom: 1rem;
-    color: var(--primary);
+    font-size: 1.4rem;
 }
 
-/* Formulários */
+/* === SEÇÃO DA CALCULADORA INTERATIVA === */
+.calculator-section {
+    background-color: var(--white);
+    border-radius: 12px;
+    padding: 3rem 2rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
 .form-group {
-    margin-bottom: 1.5rem;
+    margin: 2rem 0;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.8rem;
     font-weight: bold;
+    font-size: 1.1rem;
 }
 
-.form-group select, 
 .form-group input {
+    padding: 0.8rem;
     width: 100%;
-    padding: 0.7rem;
-    border: 1px solid #ccc;
+    max-width: 300px;
+    border: 2px solid #cccccc;
     border-radius: 5px;
-    font-size: 1rem;
-    outline: none;
+    font-size: 1.1rem;
+    text-align: center;
     transition: border-color 0.3s ease;
 }
 
-.form-group select:focus, 
 .form-group input:focus {
-    border-color: var(--secondary);
+    outline: none;
+    border-color: var(--primary-color);
 }
 
-/* Bloco de Resultado da Simulação */
-#resultado {
-    margin-top: 1.5rem;
-    padding: 1rem;
-    background-color: var(--accent);
-    border-left: 5px solid var(--secondary);
-    display: none;
-    border-radius: 0 5px 5px 0;
-    animation: slideDown 0.3s ease;
+/* Caixa onde o resultado do JavaScript aparece */
+.result-box {
+    display: none; /* Controlado pelo script.js */
+    margin-top: 2.5rem;
+    padding: 1.5rem;
+    background-color: #e8f5e9;
+    border-left: 5px solid var(--primary-color);
+    border-radius: 4px;
+    text-align: left;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-/* Rodapé */
+.result-box h4 {
+    color: var(--primary-dark);
+    font-size: 1.2rem;
+}
+
+.result-box p {
+    margin-bottom: 0.6rem;
+    font-size: 1.05rem;
+}
+
+/* === RODAPÉ E FORMULÁRIO DE CONTATO === */
 footer {
-    background-color: var(--dark);
+    background-color: #1b3d20;
     color: var(--white);
+    padding: 4rem 2rem 1.5rem 2rem;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 3rem;
+}
+
+.footer-form input, 
+.footer-form textarea {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 0.8rem;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 4px;
+    background-color: rgba(255,255,255,0.1);
+    color: var(--white);
+    font-size: 0.95rem;
+}
+
+.footer-form input::placeholder, 
+.footer-form textarea::placeholder {
+    color: #b3cbb5;
+}
+
+.footer-form input:focus, 
+.footer-form textarea:focus {
+    outline: none;
+    background-color: rgba(255,255,255,0.15);
+    border-color: var(--secondary-color);
+}
+
+.footer-bottom {
     text-align: center;
-    padding: 2rem;
     margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.9rem;
+    color: #b3cbb5;
 }
 
-/* Animações Simples */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes slideDown {
-    from { opacity: 0; transform: translateY(-5px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Responsividade para Telas Menores (Celulares) */
-@media (max-width: 600px) {
-    header {
+/* === RESPONSIVIDADE (ADAPTAÇÃO PARA CELULARES) === */
+@media (max-width: 768px) {
+    .navbar {
         flex-direction: column;
-        text-align: center;
-        gap: 1rem;
+        gap: 1.2rem;
+        padding: 1rem;
     }
     
-    nav a {
-        margin: 0 0.75rem;
+    .nav-links {
+        gap: 1.2rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .hero {
+        margin-top: 100px;
+        height: 70vh;
     }
 
-    .hero h2 {
-        font-size: 1.8rem;
+    .hero h1 {
+        font-size: 2rem;
     }
 
-    .tabs {
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .container {
+        padding: 2.5rem 1rem;
+    }
+
+    .footer-content {
         flex-direction: column;
-        border-bottom: none;
-    }
-
-    .tab-btn {
-        border-bottom: 1px solid #ddd;
-        padding: 0.75rem;
-    }
-
-    .tab-btn.active {
-        border-bottom: 2px solid var(--primary);
+        gap: 2rem;
     }
 }
